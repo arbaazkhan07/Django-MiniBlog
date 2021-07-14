@@ -1,0 +1,25 @@
+{% extends 'app/base.html' %} {% block content %}
+
+{% block title %} User Register {% endblock title %}
+
+<div class="col-md-10">
+  <h3 class="my-4">Become an Author</h3>
+  {% if error %}
+    <p {% class="alert alert-danger text-center">{{ error }}</p>
+  {% endif %}
+  <form action="" method="POST" novalidate>
+    {% csrf_token %} 
+    {% if form.non_field_errors %} 
+      {% for error in form.non_field_errors %}
+        {{ error }} 
+      {% endfor %} 
+    {% endif %}
+    {% for fm in form %}
+      <div class="form-group">
+        {{ fm.label_tag }} {{ fm }} <small class='text-warning'>{{ fm.errors|striptags }}</small>
+      </div>
+    {% endfor %}
+    <input type="submit" value="Register" class="btn btn-outline-success" />
+  </form>
+</div>
+{% endblock content %}

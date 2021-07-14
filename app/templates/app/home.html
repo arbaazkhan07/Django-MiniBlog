@@ -1,0 +1,17 @@
+{% extends 'app/base.html' %}
+
+{% block title %} Posts {% endblock title %}
+
+{% block content %}
+<div class="col-md-10">
+    <h3 class="my-4">New Posts</h3>
+    {% for post in posts %}
+    <div class="jumbotron jumbotron-fluid shadow-lg jumbo-color">
+        <div class="container">
+            <h1 class="display-4">{{ post.title }}</h1>
+            <p class="lead">{{ post.desc }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}

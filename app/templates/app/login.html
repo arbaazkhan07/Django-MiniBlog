@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %} 
+
+{% block title %} User Login {% endblock title %}
+
+{% block message %}
+  {% if messages %}
+    {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-{{ message.tags }} alert-dismissible fade show"{% endif %} role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+    {% endfor %}
+  {% endif %}
+{% endblock message %}
+
+{% block content %}
+<div class="col-md-10">
+  <h3 class="my-4">Way to dashboard</h3>
+  <form action="" method="POST" novalidate>
+    {% csrf_token %} 
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <p class="alert alert-warning text-center">{{ error }}</p>
+      {% endfor %}
+    {% endif %}
+    {% for fm in form %}
+    <div class="form-group">
+      {{ fm.label_tag }} {{ fm }} <small class="text-warning">{{ fm.errors|striptags }}</small>
+    </div>
+    {% endfor %}
+      <input type="submit" class="btn btn-outline-success" value="Login" />
+    {% if form.non_field_errors %} 
+    {% for error in form.non_field_errors %}
+      <p>{{ errorr }}</p>
+    {% endfor %} 
+    {% endif %}
+  </form>
+</div>
+{% endblock content %}
